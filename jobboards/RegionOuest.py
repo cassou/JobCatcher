@@ -37,7 +37,7 @@ class RegionOuest(Jobboard):
         xmldoc = minidom.parse(os.path.join(self.processingDir, filename))
 
         MainPubDate = xmldoc.getElementsByTagName('pubDate')[0].firstChild.data
-        epochPubDate = datetime.datetime.strptime(MainPubDate, "%a, %d %b %Y %H:%M:%S +0200").strftime('%s')
+        epochPubDate = datetime.datetime.strptime(MainPubDate, "%a, %d %b %Y %H:%M:%S +0100").strftime('%s')
         print "main date " + MainPubDate
 
         # if (epochPubDate <= self.lastFetchDate):
