@@ -34,7 +34,10 @@ class RegionSudOuest(Jobboard):
         filename = url.split('/')[-1]
         utilities.download_file(url, self.processingDir)
 
-        xmldoc = minidom.parse(os.path.join(self.processingDir, filename))
+        fileXML = open(os.path.join(self.processingDir, filename), 'r+')
+        fileXML = fileXML.read()
+        fileXML = fileXML.replace('US-ASCII','iso-8859-1')
+        xmldoc = minidom.parseString(fileXML)
 
         MainPubDate = xmldoc.getElementsByTagName('pubDate')[0].firstChild.data
         epochPubDate = datetime.datetime.strptime(MainPubDate, "%a, %d %b %Y %H:%M:%S +0200").strftime('%s')
